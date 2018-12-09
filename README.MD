@@ -32,57 +32,88 @@ npm run build  生产
 
 @import "../dist/next-scss";
 //test color-map
-$color-map: (
+$colors: (
   0:#000,
+  1:#111,
   3:#333,
   6:#666,
+  7:#777,
+  8:#888,
   9:#999,
-  f:#fff
+  c:#ccc,
+  d:#ddd,
+  e:#eee,
+  f:#fff,
+  black:#002600,
+  red:#f56c6c,
+  primary:#da5643,
+  orange:#f5a623,
+  green:#2dd1ac,
+  blue:#2fa0f9,
 );
-$width-list:(1,2,3,4,5,6,7,8,9);
-$margin-list:(1,2,3,4,5,6,7,8,9);
-$padding-list:(1,2,3,4,5,6,7,8,90,100);
 
-//Generate a list:
-$data-src:(1,20);
-$border-radius-list:(1,5);
-$font-list:(10,20,30);
-$line-clamp:(1,2,3,4,5);
-
-@include generator-color($color-map,'.c__');
-@include generator-background-color($color-map,'.bg__');
-@include generator-border-color($color-map,'.bdc__');
-
-
-//Generate width/blank/font-size/border-radius:
-@include generator-width-w1($data-src,'.w1__');
-@include generator-width-wp($width-list,'.wp__');
-@include generator-blank($width-list,'.blk__');
-@include generator-font-size($font-list,'.f-');
-@include generator-border-radius($border-radius-list,'.bdr__');
-
-//Generate margin:
-@include generator-margin($margin-list,'m');
-@include generator-margin($margin-list,'mt');
-@include generator-margin($margin-list,'mr');
-@include generator-margin($margin-list,'ml');
-@include generator-margin($margin-list,'mb');
-@include generator-margin($margin-list,'mx');
-@include generator-margin($margin-list,'my');
-
-//Generate padding:
-@include generator-padding($padding-list,'p');
-@include generator-padding($padding-list,'pt');
-@include generator-padding($padding-list,'pr');
-@include generator-padding($padding-list,'pl');
-@include generator-padding($padding-list,'pb');
-@include generator-padding($padding-list,'px');
-@include generator-padding($padding-list,'py');
-
-//Generate your own grid:
-@include generator-line($width-list,#f3f3f3,'.dc-line-');
-@include generator-line-clamp($line-clamp,'.line-clamp-');
-
+$margin-list:(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 28, 30, 31, 35, 40, 50, 55, 87, 60, 75, 100, 150);
+$padding-list:(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30, 35, 40, 50, 100);
+$position-list:(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 28, 30, 31, 35, 40, 50, 55, 87, 60, 75, 100, 150);
+$font-size-list:(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 33, 35, 36, 37, 38, 39, 40, 42, 45, 48);
+$border-radius-list:(3, 4, 5, 10);
+$line-clamp-list:(wrap, 1, 2, 3);
+$line-list:(1);
+$width-percent-list:(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+$width-list:(50,60,70, 80, 100, 120, 140, 150, 160, 180, 200, 240, 260, 300, 400, 500);
+$text-align-list:(l:left, c:center, r:right);
+$flex-list:(l:flex-start, c:center, r:flex-end);
+$flex-list-number:(1, 2);
+//bg-0>background:#000
+@include generator-background-color($colors);
+//bdc-0>border-color:#000
+@include generator-border-color($colors);
+//c-0>color:#000
+@include generator-color($colors);
+//pt10>padding-top:10px
+//pr10>padding-right:10px
+//pb10>padding-bottom:10px
+//pl10>padding-left:10px
+//px10>padding-left:10px padding-right:10px
+//py10>padding-top:10px padding-bottom:10px
+@include generator-padding-all($padding-list);
+//mt10>margin-top:10px
+//mr10>margin-right:10px
+//mb10>margin-bottom:10px
+//ml10>margin-left:10px
+//mx10>margin-left:10px margin-right:10px 
+//my10>margin-top:10px margin-bottom:10px
+@include generator-margin-all($margin-list);
+//wp-1 > 10%
+@include generator-width-wp-percent($width-percent-list);
+//wp-80>80px 
+//wp-100>100px
+@include generator-width-wp($width-list);
+//f12
+@include generator-font-size($font-size-list);
+//bdr-3>border-radius:3px;
+@include generator-border-radius($border-radius-list);
+//line-1
+@include generator-line($line-list);
+//lc-1
+@include generator-line-clamp($line-clamp-list);
+//tl>text-align:left
+//tc>text-align:center
+//tr>text-align:right
+@include generator-text-align($text-align-list);
+//flex-xl>justify-content: flex-start
+//flex-xc>justify-content: center
+//flex-xr>justify-content: flex-end
+//flex-xl>justify-content: flex-start
+//flex-xc>justify-content: center
+//flex-xr>justify-content: flex-end
+@include generator-flex-all($flex-list);
+//flex1>flext:1
+@include generator-flex-number($flex-list-number); //top1>top:1px
+//right1>right:1px
+//bottom1>bottom:1px
+//left1>left:1px
+@include generator-position-all($position-list);
 
 .test-ml100{
   >span{
