@@ -1,0 +1,60 @@
+
+@import "../dist/next-scss";
+//test color-map
+$color-map: (
+  0:#000,
+  3:#333,
+  6:#666,
+  9:#999,
+  f:#fff
+);
+$width-list:(1,2,3,4,5,6,7,8,9);
+$margin-list:(1,2,3,4,5,6,7,8,9);
+$padding-list:(1,2,3,4,5,6,7,8,90,100);
+
+//Generate a list:
+$data-src:(1,20);
+$border-radius-list:(1,5);
+$font-list:(10,20,30);
+$line-clamp:(1,2,3,4,5);
+
+@include generator-color($color-map,'.c__');
+@include generator-background-color($color-map,'.bg__');
+@include generator-border-color($color-map,'.bdc__');
+
+
+//Generate width/blank/font-size/border-radius:
+@include generator-width-w1($data-src,'.w1__');
+@include generator-width-wp($width-list,'.wp__');
+@include generator-blank($width-list,'.blk__');
+@include generator-font-size($font-list,'.f-');
+@include generator-border-radius($border-radius-list,'.bdr__');
+
+//Generate margin:
+@include generator-margin($margin-list,'m');
+@include generator-margin($margin-list,'mt');
+@include generator-margin($margin-list,'mr');
+@include generator-margin($margin-list,'ml');
+@include generator-margin($margin-list,'mb');
+@include generator-margin($margin-list,'mx');
+@include generator-margin($margin-list,'my');
+
+//Generate padding:
+@include generator-padding($padding-list,'p');
+@include generator-padding($padding-list,'pt');
+@include generator-padding($padding-list,'pr');
+@include generator-padding($padding-list,'pl');
+@include generator-padding($padding-list,'pb');
+@include generator-padding($padding-list,'px');
+@include generator-padding($padding-list,'py');
+
+//Generate your own grid:
+@include generator-line($width-list,#f3f3f3,'.dc-line-');
+@include generator-line-clamp($line-clamp,'.line-clamp-');
+
+
+.test-ml100{
+  >span{
+    border: 1px solid #000;
+  }
+}

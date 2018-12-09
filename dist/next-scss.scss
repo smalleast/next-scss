@@ -1,0 +1,807 @@
+//mixin start
+$grid-padding-width: 10px !default;
+@mixin display-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flex-wrap($value: nowrap) {
+  // No Webkit Box fallback.
+  -webkit-flex-wrap: $value;
+  -moz-flex-wrap: $value;
+  -ms-flex-wrap: $value;
+  flex-wrap: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  -webkit-box-flex: $fg;
+  -webkit-flex: $fg $fs $fb;
+  -moz-box-flex: $fg;
+  -moz-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value==flex-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+  }
+  @else if $value==flex-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+  }
+  @else {
+    -webkit-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  -moz-align-items: $value;
+  align-items: $value;
+}
+
+@mixin align-self($value: auto) {
+  -webkit-align-self: $value;
+  -moz-align-self: $value;
+  @if $value==flex-start {
+    -ms-flex-item-align: start;
+  }
+  @else if $value==flex-end {
+    -ms-flex-item-align: end;
+  }
+  @else {
+    -ms-flex-item-align: $value;
+  }
+  align-self: $value;
+}
+
+@mixin justify-content($value: flex-start) {
+  -webkit-justify-content: $value;
+  -moz-justify-content: $value;
+  justify-content: $value;
+}
+
+//mixin end
+.row {
+  @include display-flex();
+  width: 100%;
+}
+
+.row-wrap {
+  @include flex-wrap(wrap);
+}
+
+.row-no-padding {
+  padding: 0;
+  >.col {
+    padding: 0;
+  }
+}
+
+.col {
+  @include flex(1);
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+/* Vertically Align Columns */
+
+/* .row-* vertically aligns every .col in the .row */
+
+//垂直方向
+//顶端对齐
+.row-top {
+  @include align-items(flex-start);
+}
+//底部对齐
+.row-bottom {
+  @include align-items(flex-end);
+}
+//竖直方向上居中对齐
+.row-center {
+  @include align-items(center);
+}
+//item第一行文字的底部对齐
+.row-stretch {
+  @include align-items(stretch);
+}
+//当item未设置高度时，item将和容器等高对齐
+.row-baseline {
+  @include align-items(baseline);
+}
+
+//水平方向
+//左对齐
+.row-col-start {
+  @include justify-content(flex-start);
+}
+//右对齐
+.row-col-end {
+  @include justify-content(flex-end);
+}
+//居中对齐
+.row-col-center {
+  @include justify-content(center);
+}
+//两端对齐
+.row-col-between {
+  @include justify-content(space-between);
+}
+//沿轴线均匀分布
+.row-col-around {
+  @include justify-content(space-around);
+}
+
+/* .col-* vertically aligns an individual .col */
+
+.col-top {
+  @include align-self(flex-start);
+}
+
+.col-bottom {
+  @include align-self(flex-end);
+}
+
+.col-center {
+  @include align-self(center);
+}
+
+/* Column Offsets */
+
+.col-offset-10 {
+  margin-left: 10%;
+}
+
+.col-offset-20 {
+  margin-left: 20%;
+}
+
+.col-offset-25 {
+  margin-left: 25%;
+}
+
+.col-offset-33,
+.col-offset-34 {
+  margin-left: 33.3333%;
+}
+
+.col-offset-50 {
+  margin-left: 50%;
+}
+
+.col-offset-66,
+.col-offset-67 {
+  margin-left: 66.6666%;
+}
+
+.col-offset-75 {
+  margin-left: 75%;
+}
+
+.col-offset-80 {
+  margin-left: 80%;
+}
+
+.col-offset-90 {
+  margin-left: 90%;
+}
+
+/* Explicit Column Percent Sizes */
+
+/* By default each grid column will evenly distribute */
+
+/* across the grid. However, you can specify individual */
+
+/* columns to take up a certain size of the available area */
+
+.col-5 {
+  @include flex(0, 0, 5%);
+  max-width: 5%;
+}
+
+.col-10 {
+  @include flex(0, 0, 10%);
+  max-width: 10%;
+}
+
+.col-15 {
+  @include flex(0, 0, 15%);
+  max-width: 15%;
+}
+
+.col-20 {
+  @include flex(0, 0, 20%);
+  max-width: 20%;
+}
+
+.col-25 {
+  @include flex(0, 0, 25%);
+  max-width: 25%;
+}
+
+.col-30 {
+  @include flex(0, 0, 30%);
+  max-width: 30%;
+}
+
+.col-33,
+.col-34 {
+  @include flex(0, 0, 33.3333%);
+  max-width: 33.3333%;
+}
+
+.col-35 {
+  @include flex(0, 0, 35%);
+  max-width: 35%;
+}
+
+.col-40 {
+  @include flex(0, 0, 40%);
+  max-width: 40%;
+}
+
+.col-45 {
+  @include flex(0, 0, 45%);
+  max-width: 45%;
+}
+
+.col-50 {
+  @include flex(0, 0, 50%);
+  max-width: 50%;
+}
+
+.col-55 {
+  @include flex(0, 0, 55%);
+  max-width: 55%;
+}
+
+.col-60 {
+  @include flex(0, 0, 60%);
+  max-width: 60%;
+}
+
+.col-65 {
+  @include flex(0, 0, 65%);
+  max-width: 65%;
+}
+
+.col-66,
+.col-67 {
+  @include flex(0, 0, 66.6666%);
+  max-width: 66.6666%;
+}
+
+.col-70 {
+  @include flex(0, 0, 70%);
+  max-width: 70%;
+}
+
+.col-75 {
+  @include flex(0, 0, 75%);
+  max-width: 75%;
+}
+
+.col-80 {
+  @include flex(0, 0, 80%);
+  max-width: 80%;
+}
+
+.col-85 {
+  @include flex(0, 0, 85%);
+  max-width: 85%;
+}
+
+.col-90 {
+  @include flex(0, 0, 90%);
+  max-width: 90%;
+}
+
+.col-95 {
+  @include flex(0, 0, 95%);
+  max-width: 95%;
+}
+
+.col-100 {
+  @include flex(0, 0, 100%);
+  max-width: 100%;
+}
+
+/*_grid End*/
+/*background-color Start*/
+
+@mixin generator-background-color($inMap, $inPrefix:'bg-') {
+  @each $name,
+  $color in $inMap {
+    .#{$inPrefix}#{$name} {
+      background-color:#{$color};
+    }
+  }
+}
+
+/*background-color End*/
+
+/*border-color Start*/
+
+@mixin generator-border-color($inMap, $inPrefix:'bdc-') {
+  @each $name,
+  $color in $inMap {
+    .#{$inPrefix}#{$name} {
+      border-color:#{$color};
+    }
+  }
+}
+
+/*border-color End*/
+
+/*border-radius Start*/
+
+@mixin generator-border-radius($inList, $inPrefix:'bdr-') {
+  .#{$inPrefix} {
+    @each $i in $inList {
+      &#{$i} {
+        border-radius: #{$i}px;
+      }
+    }
+  }
+}
+
+/*border-radius End*/
+
+/*color Start*/
+
+@mixin generator-color($inMap, $inPrefix:'c-') {
+  @each $name,
+  $color in $inMap {
+    .#{$inPrefix}#{$name} {
+      color:#{$color};
+    }
+  }
+}
+
+/*color End*/
+
+/*font-size Start*/
+
+@mixin generator-font-size($inList, $inPrefix:'f') {
+  .#{$inPrefix} {
+    @each $i in $inList {
+      &#{$i} {
+        font-size: #{$i}px;
+      }
+    }
+  }
+}
+
+/*font-size End*/
+
+/*line-clamp Start*/
+
+.line-clamp {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.line-wrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+@mixin line-clamp($inLine) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  display: -webkit-box;
+  -webkit-line-clamp: $inLine;
+  -webkit-box-orient: vertical;
+}
+
+@mixin generator-line-clamp($inList, $inPrefix:'.lc-') {
+  #{$inPrefix} {
+    @each $i in $inList {
+      @if $i=='wrap' {
+        &#{$i} {
+          @extend .line-wrap;
+        }
+      }
+      @else {
+        &#{$i} {
+          -webkit-line-clamp: $i;
+          @extend .line-clamp;
+        }
+      }
+    }
+  }
+}
+
+/*line-clamp End*/
+
+/*line Start*/
+
+.blank {
+  display: block;
+  font-size: 0;
+  overflow: hidden;
+  clear: both;
+}
+
+@mixin generator-line($inList, $inColor:#ddd, $inPrefix:'line-') {
+  .#{$inPrefix} {
+    @each $i in $inList {
+      &#{$i} {
+        height: #{$i}px;
+        background-color: $inColor;
+        @extend .blank;
+      }
+    }
+  }
+}
+
+/*line End*/
+
+/*margin Start*/
+
+$margin-map:( m:margin, mt:margin-top, mr:margin-right, mb:margin-bottom, ml:margin-left, mx:(margin-left, margin-right), my:(margin-top, margin-bottom));
+.mr_->*:last-child {
+  margin-right: 0;
+}
+
+.ml_->*:first-child {
+  margin-left: 0;
+}
+
+@mixin generator-margin($inList, $inDirection:'m') {
+  $mapValue: map_get($margin-map, $inDirection);
+  $typeof: type-of($mapValue);
+  @if $typeof=='string' {
+    .#{$inDirection} {
+      @each $i in $inList {
+        &#{$i} {
+          &,
+          &_>* {
+            #{$mapValue}:#{$i}px;
+          }
+        }
+      }
+    }
+  }
+  @else {
+    .#{$inDirection} {
+      @each $i in $inList {
+        &#{$i} {
+          &,
+          &_>* {
+            //mapValue is a `list`
+            @each $mapItem in $mapValue {
+              #{$mapItem}:#{$i}px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin generator-margin-m($inList) {
+  @include generator-margin($inList, 'm');
+}
+
+@mixin generator-margin-mt($inList) {
+  @include generator-margin($inList, 'mt');
+}
+
+@mixin generator-margin-mr($inList) {
+  @include generator-margin($inList, 'mr');
+}
+
+@mixin generator-margin-mb($inList) {
+  @include generator-margin($inList, 'mb');
+}
+
+@mixin generator-margin-ml($inList) {
+  @include generator-margin($inList, 'ml');
+}
+
+@mixin generator-margin-mx($inList) {
+  @include generator-margin($inList, 'mx');
+}
+
+@mixin generator-margin-my($inList) {
+  @include generator-margin($inList, 'my');
+}
+
+@mixin generator-margin-all($inList) {
+  @include generator-margin-m($inList);
+  @include generator-margin-mt($inList);
+  @include generator-margin-mr($inList);
+  @include generator-margin-mb($inList);
+  @include generator-margin-ml($inList);
+  @include generator-margin-mx($inList);
+  @include generator-margin-my($inList);
+}
+
+/*margin End*/
+
+/*padding Start*/
+
+$padding-map: ( p:padding, pt:padding-top, pr:padding-right, pb:padding-bottom, pl:padding-left, px:(padding-left, padding-right), py:(padding-top, padding-bottom));
+.pr_->*:last-child {
+  padding-right: 0;
+}
+
+.pl_->*:first-child {
+  padding-left: 0;
+}
+
+@mixin generator-padding($inList, $inDirection:'p') {
+  $mapValue: map_get($padding-map, $inDirection);
+  $typeof: type-of($mapValue);
+  @if $typeof=='string' {
+    .#{$inDirection} {
+      @each $i in $inList {
+        &#{$i} {
+          &,
+          &_>* {
+            #{$mapValue}: #{$i}px;
+          }
+        }
+      }
+    }
+  }
+  @else {
+    .#{$inDirection} {
+      @each $i in $inList {
+        &#{$i} {
+          &,
+          &_>* {
+            //mapValue is a `list`
+            @each $mapItem in $mapValue {
+              #{$mapItem}: #{$i}px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin generator-padding-p($inList) {
+  @include generator-padding($inList, 'p');
+}
+
+@mixin generator-padding-pt($inList) {
+  @include generator-padding($inList, 'pt');
+}
+
+@mixin generator-padding-pr($inList) {
+  @include generator-padding($inList, 'pr');
+}
+
+@mixin generator-padding-pb($inList) {
+  @include generator-padding($inList, 'pb');
+}
+
+@mixin generator-padding-pl($inList) {
+  @include generator-padding($inList, 'pl');
+}
+
+@mixin generator-padding-px($inList) {
+  @include generator-padding($inList, 'px');
+}
+
+@mixin generator-padding-py($inList) {
+  @include generator-padding($inList, 'py');
+}
+
+@mixin generator-padding-all($inList) {
+  @include generator-padding-p($inList);
+  @include generator-padding-pt($inList);
+  @include generator-padding-pr($inList);
+  @include generator-padding-pb($inList);
+  @include generator-padding-pl($inList);
+  @include generator-padding-px($inList);
+  @include generator-padding-py($inList);
+}
+
+/*padding End*/
+
+/*width Start*/
+
+@mixin generator-width-wp($inList, $mode:'px', $inPrefix:'wp-') {
+  @each $value in $inList {
+    .#{$inPrefix}#{$value} {
+      @if $mode=='percent' {
+        width: #{$value*10%};
+      }
+      @else {
+        width: #{$value}px;
+      }
+    }
+  }
+}
+
+@mixin generator-width-wp-percent($inList) {
+  @include generator-width-wp($inList, 'percent')
+}
+
+/*width End*/
+
+/* text-align start */
+
+@mixin generator-text-align($inList, $inPrefix:'t') {
+  @each $name,
+  $var in $inList {
+    .#{$inPrefix}#{$name} {
+      &,
+      &_>* {
+        text-align: #{$var};
+      }
+    }
+  }
+}
+
+/* text-align end */
+
+/* flex start */
+
+.flex {
+  display: flex;
+  display: -webkit-flex;
+}
+
+@mixin generator-flex($inList, $layout:'x', $inPrefix:'flex-') {
+  @each $name,
+  $var in $inList {
+    .#{$inPrefix}#{$layout}#{$name} {
+      @extend .flex;
+      @if $layout=='x' {
+        justify-content: #{$var};
+        -webkit-justify-content: #{$var};
+      }
+      @else {
+        align-items: #{$var};
+        -webkit-align-items:#{$var};
+      }
+    }
+  }
+}
+
+@mixin generator-flex-all($inList) {
+  @include generator-flex($inList, 'x');
+  @include generator-flex($inList, 'y');
+}
+
+@mixin generator-flex-number($inList, $inPrefix:'flex') {
+  .#{$inPrefix} {
+    @each $var in $inList {
+      &#{$var} {
+        flex:#{$var};
+      }
+    }
+  }
+}
+
+/* flex end */
+
+/* position start */
+
+@mixin generator-position($inList, $inPrefix:'top') {
+  .#{$inPrefix} {
+    @each $var in $inList {
+      &#{$var} {
+        #{$inPrefix}:#{$var}px;
+      }
+    }
+  }
+}
+
+@mixin generator-position-all($inList) {
+  @include generator-position($inList, 'top');
+  @include generator-position($inList, 'right');
+  @include generator-position($inList, 'bottom');
+  @include generator-position($inList, 'left');
+}
+
+/* position end */
+$colors: (
+  0:#000,
+  1:#111,
+  3:#333,
+  6:#666,
+  7:#777,
+  8:#888,
+  9:#999,
+  c:#ccc,
+  d:#ddd,
+  e:#eee,
+  f:#fff,
+  black:#002600,
+  red:#f56c6c,
+  primary:#da5643,
+  orange:#f5a623,
+  green:#2dd1ac,
+  blue:#2fa0f9,
+);
+
+//short for get color:
+@function color($color) {
+  @if map-has-key($colors, $color) {
+    @return map-get($colors, $color);
+  }
+  @debug $colors;
+  @error "Invalid color name: `#{$color}`.";
+}
+
+//generator basic items:
+@import "colors";
+$margin-list:(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 28, 30, 31, 35, 40, 50, 55, 87, 60, 75, 100, 150);
+$padding-list:(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30, 35, 40, 50, 100);
+$position-list:(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 28, 30, 31, 35, 40, 50, 55, 87, 60, 75, 100, 150);
+$font-size-list:(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 33, 35, 36, 37, 38, 39, 40, 42, 45, 48);
+$border-radius-list:(3, 4, 5, 10);
+$line-clamp-list:(wrap, 1, 2, 3);
+$line-list:(1);
+$width-percent-list:(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+$width-list:(50,60,70, 80, 100, 120, 140, 150, 160, 180, 200, 240, 260, 300, 400, 500);
+$text-align-list:(l:left, c:center, r:right);
+$flex-list:(l:flex-start, c:center, r:flex-end);
+$flex-list-number:(1, 2);
+//bg-0>background:#000
+@include generator-background-color($colors);
+//bdc-0>border-color:#000
+@include generator-border-color($colors);
+//c-0>color:#000
+@include generator-color($colors);
+//pt10>padding-top:10px
+//pr10>padding-right:10px
+//pb10>padding-bottom:10px
+//pl10>padding-left:10px
+//px10>padding-left:10px padding-right:10px
+//py10>padding-top:10px padding-bottom:10px
+@include generator-padding-all($padding-list);
+//mt10>margin-top:10px
+//mr10>margin-right:10px
+//mb10>margin-bottom:10px
+//ml10>margin-left:10px
+//mx10>margin-left:10px margin-right:10px 
+//my10>margin-top:10px margin-bottom:10px
+@include generator-margin-all($margin-list);
+//wp-1 > 10%
+@include generator-width-wp-percent($width-percent-list);
+//wp-80>80px 
+//wp-100>100px
+@include generator-width-wp($width-list);
+//f12
+@include generator-font-size($font-size-list);
+//bdr-3>border-radius:3px;
+@include generator-border-radius($border-radius-list);
+//line-1
+@include generator-line($line-list);
+//lc-1
+@include generator-line-clamp($line-clamp-list);
+//tl>text-align:left
+//tc>text-align:center
+//tr>text-align:right
+@include generator-text-align($text-align-list);
+//flex-xl>justify-content: flex-start
+//flex-xc>justify-content: center
+//flex-xr>justify-content: flex-end
+//flex-xl>justify-content: flex-start
+//flex-xc>justify-content: center
+//flex-xr>justify-content: flex-end
+@include generator-flex-all($flex-list);
+//flex1>flext:1
+@include generator-flex-number($flex-list-number); //top1>top:1px
+//right1>right:1px
+//bottom1>bottom:1px
+//left1>left:1px
+@include generator-position-all($position-list);
