@@ -15,20 +15,22 @@
 git clone https://github.com/smalleast/next-scss.git
 
 进入文件夹
+```js
 cd next-scss
-
+```
 安装依赖
+```js
 npm install
 ```
 
 ### 编译环境
-```
+```js
 开启本地服务器
 npm run test    开发
 npm run build  生产
 ```
 ##code
-```
+```scss
 
 @import "../dist/next-scss";
 //test color-map
