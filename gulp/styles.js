@@ -17,7 +17,7 @@
       'src/_colors.scss',
       'src/_generators.scss'
     ])
-      .pipe($.concat('next-scss.scss'))
+      .pipe($.concat('index.scss'))
       .pipe(gulp.dest('dist'));
   });
 
