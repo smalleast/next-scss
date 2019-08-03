@@ -1,5 +1,6 @@
 //mixin start
 $grid-padding-width: 10px !default;
+
 @mixin display-flex {
   display: -webkit-box;
   display: -webkit-flex;
@@ -31,14 +32,17 @@ $grid-padding-width: 10px !default;
     -webkit-box-align: start;
     -ms-flex-align: start;
   }
+
   @else if $value==flex-end {
     -webkit-box-align: end;
     -ms-flex-align: end;
   }
+
   @else {
     -webkit-box-align: $value;
     -ms-flex-align: $value;
   }
+
   -webkit-align-items: $value;
   -moz-align-items: $value;
   align-items: $value;
@@ -47,15 +51,19 @@ $grid-padding-width: 10px !default;
 @mixin align-self($value: auto) {
   -webkit-align-self: $value;
   -moz-align-self: $value;
+
   @if $value==flex-start {
     -ms-flex-item-align: start;
   }
+
   @else if $value==flex-end {
     -ms-flex-item-align: end;
   }
+
   @else {
     -ms-flex-item-align: $value;
   }
+
   align-self: $value;
 }
 
@@ -93,18 +101,22 @@ $grid-padding-width: 10px !default;
 .row-top {
   @include align-items(flex-start);
 }
+
 //底部对齐
 .row-bottom {
   @include align-items(flex-end);
 }
+
 //竖直方向上居中对齐
 .row-center {
   @include align-items(center);
 }
+
 //item第一行文字的底部对齐
 .row-stretch {
   @include align-items(stretch);
 }
+
 //当item未设置高度时，item将和容器等高对齐
 .row-baseline {
   @include align-items(baseline);
@@ -115,18 +127,22 @@ $grid-padding-width: 10px !default;
 .row-col-start {
   @include justify-content(flex-start);
 }
+
 //右对齐
 .row-col-end {
   @include justify-content(flex-end);
 }
+
 //居中对齐
 .row-col-center {
   @include justify-content(center);
 }
+
 //两端对齐
 .row-col-between {
   @include justify-content(space-between);
 }
+
 //沿轴线均匀分布
 .row-col-around {
   @include justify-content(space-around);
@@ -307,3 +323,155 @@ $grid-padding-width: 10px !default;
 }
 
 /*_grid End*/
+
+.flex {
+  &-left {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+  }
+
+  &-center {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+  }
+
+  &-right {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+  }
+
+  &-top {
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+  }
+
+  &-middle {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+  }
+
+  &-bottom {
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+  }
+
+  &-left-top {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start; //水平方向
+    -webkit-justify-content: flex-start;
+    align-items: flex-start; //垂直方向
+    -webkit-align-items: flex-start;
+  }
+
+  &-left-center {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    align-items: center;
+    -webkit-align-items: center;
+  }
+
+  &-left-bottom {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+  }
+
+  &-center-top {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+  }
+
+  &-center-center {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+  }
+
+  &-center-bottom {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+  }
+
+  &-right-top {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+  }
+
+  &-right-center {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    align-items: center;
+    -webkit-align-items: center;
+  }
+
+  &-right-bottom {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+  }
+}
+
+
+.t {
+  &l {
+    text-align: left;
+  }
+
+  &c {
+    text-align: center;
+  }
+
+  &r {
+    text-align: right;
+  }
+
+  &t {
+    vertical-align: top;
+  }
+
+  &m {
+    vertical-align: middle;
+  }
+
+  &b {
+    vertical-align: bottom;
+  }
+}
