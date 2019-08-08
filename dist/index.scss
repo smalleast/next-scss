@@ -97,6 +97,12 @@ $grid-padding-width: 10px !default;
 /* .row-* vertically aligns every .col in the .row */
 
 //垂直方向
+
+//竖直方向上居中对齐
+.row-center {
+  @include align-items(center);
+}
+
 //顶端对齐
 .row-top {
   @include align-items(flex-start);
@@ -105,11 +111,6 @@ $grid-padding-width: 10px !default;
 //底部对齐
 .row-bottom {
   @include align-items(flex-end);
-}
-
-//竖直方向上居中对齐
-.row-center {
-  @include align-items(center);
 }
 
 //item第一行文字的底部对齐
