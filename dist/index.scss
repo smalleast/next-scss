@@ -142,11 +142,25 @@ $grid-padding-width: 10px !default;
 //两端对齐
 .row-col-between {
   @include justify-content(space-between);
+
+  &::after {
+    content: "";
+    flex: auto;
+  }
 }
 
 //沿轴线均匀分布
 .row-col-around {
   @include justify-content(space-around);
+}
+
+//分散区分间隔，最后一行居左对齐
+.row-col-auto {
+
+  &::after {
+    content: "";
+    flex: auto;
+  }
 }
 
 /* .col-* vertically aligns an individual .col */
